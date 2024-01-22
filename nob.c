@@ -21,7 +21,7 @@ Nob_Proc build_gl(const char *path)
   warnings(&cmd);
   nob_cmd_append(&cmd, "-o", nob_temp_sprintf("%s/%s", build_path, path));
   nob_cmd_append(&cmd, nob_temp_sprintf("%s/%s.c", source_path, path));
-  nob_cmd_append(&cmd, "-lglfw", "-lrt", "-lm", "-ldl", "-lGL");
+  nob_cmd_append(&cmd, "-lglfw", "-lGL");
   return nob_cmd_run_async(cmd);
 }
 
