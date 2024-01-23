@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-// #include <GL/glew.h>
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
 #define WIDTH 800
@@ -11,6 +11,7 @@
 int main()
 {
     GLFWwindow *window;
+    GLuint VertexArrayID;
 
     // glewExperimental = true;
     if (!glfwInit())
@@ -32,19 +33,23 @@ int main()
         glfwTerminate();
         return -1;
     }
-    glfwMakeContextCurrent(window); // Initialize GLEW
+    glfwMakeContextCurrent(window);
 
-    // glewExperimental = true;        // Needed in core profile
-    // if (glewInit() != GLEW_OK)
-    // {
-    //     fprintf(stderr, "Failed to initialize GLEW\n");
-    //     return -1;
-    // }
+    // glewExperimental = true; // Needed in core profile
+
+    if (glewInit() != GLEW_OK)
+    {
+        fprintf(stderr, "Failed to initialize GLEW\n");
+        return -1;
+    }
+
+    glGenVertexArrays(1, &VertexArrayID);
+    glBindVertexArray(VertexArrayID);
 
     while (!glfwWindowShouldClose(window))
     {
 
-        glClearColor(1.0, 0.0, 0.0, 1.0);
+        // glClearColor(1.0, 0.0, 0.0, 1.0);
         glClear(GL_COLOR_BUFFER_BIT);
 
         if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
